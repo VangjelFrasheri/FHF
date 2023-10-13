@@ -17,7 +17,7 @@ There is a video on downloading spring tool suite 4 here: https://www.youtube.co
 
 If you want to use a different IDE, there are instructions you can follow here: https://docs.spring.io/spring-boot/docs/1.0.0.RC5/reference/html/getting-started-installing-spring-boot.html
 
-2. Once the project is in your IDE (Check how to downlonad above) right click on the project and scroll down to Maven -> Update Project just to make sure the project complies and all the dependancies are there.
+2. Once the project is in your IDE (Check how to download above) right click on the project and scroll down to Maven -> Update Project just to make sure the project complies and all the dependancies are there.
 
 3. Right click on the FirstHelpFinancialApplication.java class then scroll down to "run as" and select Spring Boot App. This should start the server in a few seconds and you will be ready to make API calls. Look at the documentation file for more information.
 
