@@ -39,32 +39,36 @@ public class NewsApiService {
 	private static final Logger log = LoggerFactory.getLogger(NewsApiService.class);
 
 //	@Cacheable(cacheNames="articles", key="#searchText")
-	@Cacheable("articleKeyword")
+	@Cacheable(cacheNames="articleKeyword", key="{#searchText, #numOfArticles}")
 	@GetMapping("/searchArticle/keyword")
 	public GNewsResponse getArticleByKeyword(@RequestParam String searchText, @RequestParam(required = false, defaultValue="5") Integer numOfArticles){
-		System.out.println("making the api call");
+		log.info("making api call to get articles containing " + searchText);
 		String url = gNewsConfig.getSearchUrl(searchText, authConfig.getAuthKey(), numOfArticles);
 		return gNewsApi.getByKeyWord(url);
 	}
 	
-	@Cacheable(cacheNames="articleKeyword")
+	@Cacheable(cacheNames="articleKeyword", key="{#searchText + 'title', #numOfArticles}")
 	@GetMapping("/searchArticle/title")
 	public GNewsResponse getArticleByTitle(@RequestParam String searchText, @RequestParam(required = false, defaultValue="5") Integer numOfArticles){
-		System.out.println("making the api call 2");
+		log.info("making api call to get articles containing " + searchText + " in the title");
 		String url = gNewsConfig.getArticleByTitleUrl(searchText, authConfig.getAuthKey(), numOfArticles);
 		return gNewsApi.getArticleByTitle(url);
 	}
 	
+	@Cacheable(cacheNames="articleKeyword", key="{#searchText + 'source', #numOfArticles}")
 	@GetMapping("/searchArticle/source")
 	public GNewsResponse getArticleByKeywordAndSource(@RequestParam String searchText, @RequestParam(required = false, defaultValue="5") Integer numOfArticles, 
 			@RequestParam String source){
+		log.info("making api call to get articles containing " + searchText + " from the source " + source);
 		String url = gNewsConfig.getSearchUrl(searchText, authConfig.getAuthKey(), numOfArticles);
 		return gNewsApi.getByKeywordAndSource(source, url);
 	}
 	
+	@Cacheable(cacheNames="articleKeyword", key="{#searchText, #from, #to, #numOfArticles}")
 	@GetMapping("/searchArticle/date")
 	public GNewsResponse getArticleByKeywordAndDate(@RequestParam String searchText, @RequestParam(required = false, defaultValue="5") Integer numOfArticles, 
 			@RequestParam(required = false) String from, @RequestParam(required = false) String to){
+		log.info("making api call to get articles containing " + searchText+ " from date "+ from + " and to date "+to);
 		String url = null;
 		try {
 			if(from != null && to != null) {
@@ -96,9 +100,11 @@ public class NewsApiService {
 		}
 	}
 	
+	@Cacheable(cacheNames="articleKeyword", key="{#searchText + 'today', #numOfArticles}")
 	@GetMapping("/searchArticle/today")
 	public GNewsResponse getArticleFromToday(@RequestParam String searchText, @RequestParam(required = false, defaultValue="5") Integer numOfArticles){
 		try {
+			log.info("making api call to get articles containing " + searchText + " form today");
 			String startOfTomorrow = util.getTomorrowsDate();
 			String startOfToday = util.getTodaysDate();
 			String url = gNewsConfig.getArticleBetweenDates(searchText, authConfig.getAuthKey(), numOfArticles, startOfToday, startOfTomorrow);
