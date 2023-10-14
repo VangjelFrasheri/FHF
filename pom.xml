@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.firshHelpFinancial</groupId>
 	<artifactId>first-help-financial</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1-RELEASE</version>
 	<name>first-help-financial</name>
 	<description>First Help Financial interview project</description>
 	<properties>

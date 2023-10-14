@@ -38,7 +38,6 @@ public class NewsApiService {
 	
 	private static final Logger log = LoggerFactory.getLogger(NewsApiService.class);
 
-//	@Cacheable(cacheNames="articles", key="#searchText")
 	@Cacheable(cacheNames="articleKeyword", key="{#searchText, #numOfArticles}")
 	@GetMapping("/searchArticle/keyword")
 	public GNewsResponse getArticleByKeyword(@RequestParam String searchText, @RequestParam(required = false, defaultValue="5") Integer numOfArticles){
