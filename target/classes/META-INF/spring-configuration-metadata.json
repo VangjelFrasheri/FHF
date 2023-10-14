@@ -1,0 +1,32 @@
+{
+  "groups": [
+    {
+      "name": "",
+      "type": "com.firstHelpFinacial.springboot.configuration.AuthConfig",
+      "sourceType": "com.firstHelpFinacial.springboot.configuration.AuthConfig"
+    },
+    {
+      "name": "",
+      "type": "com.firstHelpFinacial.springboot.configuration.GNewsConfig",
+      "sourceType": "com.firstHelpFinacial.springboot.configuration.GNewsConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "auth-key",
+      "type": "java.lang.String",
+      "sourceType": "com.firstHelpFinacial.springboot.configuration.AuthConfig"
+    },
+    {
+      "name": "base-url",
+      "type": "java.lang.String",
+      "sourceType": "com.firstHelpFinacial.springboot.configuration.GNewsConfig"
+    },
+    {
+      "name": "search-path",
+      "type": "java.lang.String",
+      "sourceType": "com.firstHelpFinacial.springboot.configuration.GNewsConfig"
+    }
+  ],
+  "hints": []
+}
