@@ -19,7 +19,6 @@ import org.springframework.http.HttpStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.EnableCaching;
 
 
 @RestController
@@ -43,7 +42,7 @@ public class NewsApiService {
 	public GNewsResponse getArticleByKeyword(@RequestParam String searchText, @RequestParam(required = false, defaultValue="5") Integer numOfArticles){
 		log.info("making api call to get articles containing " + searchText);
 		String url = gNewsConfig.getSearchUrl(searchText, authConfig.getAuthKey(), numOfArticles);
-		return gNewsApi.getByKeyWord(url);
+		return gNewsApi.getArticles(url);
 	}
 	
 	@Cacheable(cacheNames="articleKeyword", key="{#searchText + 'title', #numOfArticles}")
@@ -51,7 +50,7 @@ public class NewsApiService {
 	public GNewsResponse getArticleByTitle(@RequestParam String searchText, @RequestParam(required = false, defaultValue="5") Integer numOfArticles){
 		log.info("making api call to get articles containing " + searchText + " in the title");
 		String url = gNewsConfig.getArticleByTitleUrl(searchText, authConfig.getAuthKey(), numOfArticles);
-		return gNewsApi.getArticleByTitle(url);
+		return gNewsApi.getArticles(url);
 	}
 	
 	@Cacheable(cacheNames="articleKeyword", key="{#searchText + 'source', #numOfArticles}")
@@ -103,11 +102,11 @@ public class NewsApiService {
 	@GetMapping("/searchArticle/today")
 	public GNewsResponse getArticleFromToday(@RequestParam String searchText, @RequestParam(required = false, defaultValue="5") Integer numOfArticles){
 		try {
-			log.info("making api call to get articles containing " + searchText + " form today");
+			log.info("making api call to get articles containing '" + searchText + "' from today");
 			String startOfTomorrow = util.getTomorrowsDate();
 			String startOfToday = util.getTodaysDate();
 			String url = gNewsConfig.getArticleBetweenDates(searchText, authConfig.getAuthKey(), numOfArticles, startOfToday, startOfTomorrow);
-			return gNewsApi.getFromToday(url);
+			return gNewsApi.getArticles(url);
 		}
 		
 		catch(Exception e) {
