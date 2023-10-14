@@ -10,14 +10,17 @@ How to download the code:
 
 How to run the executable. Usually this is against best practices and artifacts/jars but I will be providing an executable for ease of running. 
 
-1. a. You will need Java 17 and can download it here https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html
+1. a. You will need Java 17+ and can download it here https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html
 1. b. Once downloaded you should add it to your home path. Doc to help https://phoenixnap.com/kb/install-java-windows#ftoc-heading-6
 1. Go to the folder you downloaded cloned to project to and open a bash terminal.
 2. Change directories into the target folder. "cd target"
 3. run the executable with the following command. "java -jar first-help-financial-0.0.1-RELEASE.jar"
 4. The server should be up and running on your local machine and ready to be interacted with. Reference the documentation page on how to make api calls.
 
-
+How to make your own executable:
+1. go to your project directory
+2. run "mvnw package -e"
+3. this will only work if you have the correct JDK ( 17+)
 
 
 How to run the code locally in your IDE and make local changes to the behavior before running it:
